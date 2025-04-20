@@ -17,11 +17,14 @@
     </head>
     <body class="bg-light">
         <header class="mb-4">
-            <div class="container-fluid">
+            <div class="container my-3">
                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded
-                mt-1 shadow">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="{{ path('recipe_list') }}">App Recipes</a>
+                mt-1 shadow-lg">
+                    <div class="container mx-auto">
+                        <a class="navbar-brand" href="{{ path('recipe_list') }}">
+                        <img src="{{ asset('images/favicon.svg') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                        {{"Recipes App"|upper}}
+                        </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
