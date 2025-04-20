@@ -24,10 +24,10 @@ Access to the API is free and does not require any authentication.
     ● user should have the ability to view their favorite recipes
     and the ability to remove them from the list
 ## Additional Information:
-● create the application using PHP and the Symfony framework with MySQL or MariaDB database
-● use simple HTML on the frontend, without any CSS styles - appearance will not be evaluated
-● in case of completing the bonus task, there is no need to use any JS frameworks
-● create a Git repository for the application
-● prepare a brief README.md file with instructions on how to run the application
+    ● create the application using PHP and the Symfony framework with MySQL or MariaDB database
+    ● use simple HTML on the frontend, without any CSS styles - appearance will not be evaluated
+    ● in case of completing the bonus task, there is no need to use any JS frameworks
+    ● create a Git repository for the application
+    ● prepare a brief README.md file with instructions on how to run the application
 
 **Good luck.**

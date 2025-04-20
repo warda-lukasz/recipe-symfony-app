@@ -24,13 +24,13 @@ Dostęp do API jest darmowy i nie wymaga żadnego uwierzytelnienia.
     ● użytkownik powinien mieć możliwość wyświetlania swoich ulubionych przepisów 
     oraz możliwość ich usuwania z listy
 ## Dodatkowe informacje:
-● aplikację utwórz z wykorzystaniem języka PHP oraz frameworka Symfony z
-wykorzystanie bazy danych MySQL lub MariaDB
-● na froncie użyj prostego HTML, bez żadnych stylów CSS - wygląd nie będzie
-oceniany
-● w przypadku wykonania zadania bonusowego, nie ma potrzeby używania żadnych
-frameworków JS
-● utwórz repozytorium Git dla aplikacji
-● przygotuj krótki plik README.md z instrukcją jak uruchomić aplikację
+    ● aplikację utwórz z wykorzystaniem języka PHP oraz frameworka Symfony z
+    wykorzystanie bazy danych MySQL lub MariaDB
+    ● na froncie użyj prostego HTML, bez żadnych stylów CSS - wygląd nie będzie
+    oceniany
+    ● w przypadku wykonania zadania bonusowego, nie ma potrzeby używania żadnych
+    frameworków JS
+    ● utwórz repozytorium Git dla aplikacji
+    ● przygotuj krótki plik README.md z instrukcją jak uruchomić aplikację
 
 **Powodzenia.**
