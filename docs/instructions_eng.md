@@ -1,5 +1,4 @@
-[back](/README.md#Table-of-contents)
-
+[back](README.md)
 # Recruitment Task - PHP Developer
 ## Description:
 The task involves creating an application for synchronizing and displaying recipes 

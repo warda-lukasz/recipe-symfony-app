@@ -1,5 +1,3 @@
-[back](/README.md#Table-of-contents)
-
 # Zadanie rekrutacyjne - PHP Developer
 ## Opis:
 Zadanie polega na utworzeniu aplikacji do synchronizacji i wyświetlania przepisów

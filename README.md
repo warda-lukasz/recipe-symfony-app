@@ -1,8 +1,3 @@
-# Table of contents 📋
-- [Description](#Description)
-- [Installation](#Installation)
-- [Other](#Other)
-
 # Description 📝
 
 I received a task to complete as part of a job recruitment process.
@@ -38,5 +33,8 @@ make first
 And finally, if you don't want to use `make`, you can look at [manual installation instructions](/docs/manual_installation).
 
 # Other 🧐
+
+If you want to see the task description, you can find it here:
+
 - [assignment instructions in polish](/docs/instructions_pl.md)
 - [assignment instructions in english](/docs/instructions_eng.md)
