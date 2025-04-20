@@ -1,3 +1,5 @@
+[back](../README.md)
+
 # ☠️ Manual installation instructions ☠️
 So you are here... may god have mercy on your soul...
 
