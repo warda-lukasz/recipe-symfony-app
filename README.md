@@ -30,7 +30,7 @@ Then run:
 make first
 ```
 
-And finally, if you don't want to use `make`, you can look at [manual installation instructions](/docs/manual_installation).
+And finally, if you don't want to use `make`, you can look at [manual installation instructions](/docs/manual_installation.md).
 
 # Other 🧐
 
