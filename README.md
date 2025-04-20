@@ -4,8 +4,11 @@
 - [Other](#Other)
 
 # Description
+#TODO Napisz opis
 # Installation 
-#TODO Napisz instrukcje
+### TLDR;
+`make fist-defaults`
+
 # Other
-[assignment instructions in polish](/docs/instructions_pl.md)
-[assignment instructions in english](/docs/instructions_eng.md)
+- [assignment instructions in polish](/docs/instructions_pl.md)
+- [assignment instructions in english](/docs/instructions_eng.md)
