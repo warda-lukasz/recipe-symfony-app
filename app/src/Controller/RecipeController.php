@@ -26,7 +26,6 @@ class RecipeController extends BaseController
     public function index(Request $req): Response
     {
         return $this->render('recipe/index.html.twig', [
-            'title' => $req->query->getString('title'),
             'pagination' => $this->paginate($req),
             'resultsForm' => $this->createForm(ResultsPerPageType::class)->createView(),
         ]);
@@ -47,7 +46,6 @@ class RecipeController extends BaseController
         }
 
         return $this->render('recipe/favs.html.twig', [
-            'title' => 'Favourites',
             'pagination' => $pagination,
         ]);
     }
@@ -57,7 +55,6 @@ class RecipeController extends BaseController
     {
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
-            'title' => $recipe->getTitle(),
         ]);
     }
 
@@ -92,7 +89,6 @@ class RecipeController extends BaseController
 
         return $this->render('recipe/addComment.html.twig', [
             'recipe' => $recipe,
-            'title' => $recipe->getTitle(),
             'form' => $form->createView(),
         ]);
     }

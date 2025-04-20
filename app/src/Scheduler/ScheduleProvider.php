@@ -16,7 +16,7 @@ class ScheduleProvider implements ScheduleProviderInterface
     public function getSchedule(): Schedule
     {
         return (new Schedule())->add(
-            RecurringMessage::every('5 seconds', new SyncMealDb()),
+            RecurringMessage::every('20 minutes', new SyncMealDb()),
         );
     }
 }

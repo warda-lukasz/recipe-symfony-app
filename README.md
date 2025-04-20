@@ -5,7 +5,9 @@
 
 # Description 📝
 
-#TODO  Napisz opis
+I received a task to complete as part of a job recruitment process.
+I had fun with it, and at the same time it proves couple of my skills,
+so I decided to put the code on GitHub.
 
 # Installation 🚀🚀🚀
 
