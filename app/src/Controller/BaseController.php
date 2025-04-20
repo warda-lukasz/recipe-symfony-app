@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -28,7 +29,7 @@ class BaseController extends AbstractController
             ->createQueryBuilder(static::$alias);
     }
 
-    protected function filter(Request $req): array
+    protected function filter(Request $req): Query
     {
         $queryBuilder = $this->getQueryBuilder();
 
@@ -45,7 +46,7 @@ class BaseController extends AbstractController
             $req->query->getString('sort', 'asc')
         );
 
-        return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder->getQuery();
     }
 
     protected function paginate(Request $req): PaginationInterface
