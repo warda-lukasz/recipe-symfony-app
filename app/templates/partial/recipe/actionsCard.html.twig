@@ -1,7 +1,7 @@
 <div class="card mb-4 shadow">
     <div class="card-body text-center">
         <a style="width: 30%" href="{{ path('recipe_list') }}" class="btn btn-dark"> ⏪ Recipes list</a>
-        <button  style="width: 30%" class="btn btn-dark my-3 favouriteBtn">♥️</button>
+        <button data-id="{{recipe.id}}" style="width: 30%" class="btn btn-dark my-3 favouriteBtn">♥️</button>
         <a style="width: 30%;" href="{{ path('recipe_comment', { id: recipe.id }) }}" class="btn btn-dark">➕ Add comment</a>
     </div>
 </div>

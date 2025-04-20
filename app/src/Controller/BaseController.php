@@ -29,9 +29,11 @@ class BaseController extends AbstractController
             ->createQueryBuilder(static::$alias);
     }
 
-    protected function filter(Request $req): Query
-    {
-        $queryBuilder = $this->getQueryBuilder();
+    protected function filter(
+        Request $req,
+        QueryBuilder $queryBuilder = null
+    ): Query {
+        $queryBuilder = $queryBuilder ?? $this->getQueryBuilder();
 
         $field = $req->query->getString('filterField') ?? null;
         $val = $req->query->getString('filterValue') ?? null;
@@ -49,10 +51,12 @@ class BaseController extends AbstractController
         return $queryBuilder->getQuery();
     }
 
-    protected function paginate(Request $req): PaginationInterface
-    {
+    protected function paginate(
+        Request $req,
+        QueryBuilder $queryBuilder = null
+    ): PaginationInterface {
         return $this->paginator->paginate(
-            $this->filter($req),
+            $this->filter($req, $queryBuilder),
             $req->query->getInt('page', 1),
             $req->query->getInt('limit', 6)
         );
