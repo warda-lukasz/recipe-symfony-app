@@ -1,5 +1,5 @@
 compose:
-	cp docker-compose.yml.dist docker-compose.yml
+	cp docker-compose.yaml.dist docker-compose.yaml
 envs:
 	cp .env.dist app/.env.local
 build:

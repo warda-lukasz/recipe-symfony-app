@@ -64,9 +64,9 @@ class RecipeFactory
             $ingredient = $this->ingredientRepository->findOneBy(['name' => $name]);
 
             if (!$ingredient) {
-                // Tutaj w ramach niezgłębiania się w szczegóły pominę.
-                // Ale można by tworzyć nowy Ingredient, albo szukać już w
-                // synchronizowanych po LIKE, bo w przepisach mogą się różnić
+                //INFO: I'll skip this here to avoid going into details.
+                // But we could create a new Ingredient, or search among
+                // already synchronized ones using LIKE, because they may differ in recipes
                 continue;
             }
 
