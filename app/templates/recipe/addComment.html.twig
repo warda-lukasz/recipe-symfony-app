@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ recipe.title }} - New Comment {% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h1>Add Comment to "{{ recipe.title }}"</h1>
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-dark">Add Comment</button>
+                    <a href="{{ path('recipe_show', { id: recipe.id }) }}"
+                    class="btn btn-light">Back to recipe</a>
+                    {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

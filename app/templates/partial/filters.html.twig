@@ -1,0 +1,27 @@
+<div class="col-12 my-1">
+    <div class="fw-light" > 
+        <small>Pages: {{ pagination.getPageCount() }}</small>
+        <small>Items: {{ pagination.getTotalItemCount() }}</small>
+    </div>
+</div>
+<div class="col-md-6">
+<form action="{{ path(pathName) }}" method="get" class="d-flex">
+    <input type="hidden" name="page" value="{{ app.request.query.get('page', 1) }}" />
+    <input type="hidden" name="filterField" value="{{ app.request.query.get('filterField', '') }}" />
+    <input type="hidden" name="filterValue" value="{{ app.request.query.get('filterValue', '') }}" />
+    <input type="hidden" name="page" value="{{ app.request.query.get('page', 1) }}" />
+    <div class="input-group">
+        <span class="input-group-text" id="itemsOnPage">Items on page</span>
+        <select style="max-width: 6em;"class="form-select" name="limit" aria-label="Items on page" aria-describedby="itemsOnPage">
+            <option value="6" {{ app.request.query.get('limit') == '6' ? 'selected' : '' }}>6</option>
+            <option value="12" {{ app.request.query.get('limit') == '12' ? 'selected' : '' }}>12</option>
+            <option value="24" {{ app.request.query.get('limit') == '24' ? 'selected' : '' }}>24</option>
+            <option value="48" {{ app.request.query.get('limit') == '48' ? 'selected' : '' }}>48</option>
+        </select>
+        <button class="btn btn-primary" type="submit" id="button-addon2">Apply</button>
+    </div>
+</form>
+</div>
+<div class="col-md-6">
+    {{ knp_pagination_filter( pagination, { (field): fieldName }) }}
+</div>

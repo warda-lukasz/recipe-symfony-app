@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    {{ knp_pagination_rel_links(pagination) }}
+{% endblock %}
+
+{% block title %}{{ title ?? 'Recipes' }}{% endblock %}
+
+{% block content %}
+<div class="container">
+        {% include 'partial/listHeader.html.twig' with { 
+            'header': 'Recipes',
+            'pathName': 'recipe_list',
+            'field': 'r.title',
+            'fieldName': 'Title'
+        } %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
+        {% for recipe in pagination %}
+        <div class="col">
+            <div class="card m-3 p-3 shadow">
+                <h5 class="card-title text-center p-2">🍲 {{ recipe.title }} 🍲</h5>
+                <img src="{{ recipe.mealThumb }}" class="card-img-top" alt="{{ recipe.title }}">
+                <div class="card-body pb-0">
+                    <p class="card-text fw-light">
+                        <strong>Category:</strong> <a href="{{ path('category_show',
+                        { id: recipe.category.id }) }}">{{ recipe.category.name }}</a>
+                        <strong>Area:</strong> {{ recipe.area }}
+                    </p>
+
+                    <small class="fw-lighter">
+                        {% if recipe.tags is not empty %}
+                            Tags:{{ recipe.tags }}
+                        {% endif %}
+                    </small>
+
+                    <br>
+
+                    <div class="my-2 d-flex justify-content-between"> 
+                        <a href="{{ path('recipe_show', { id: recipe.id }) }}"
+                        class="btn btn-dark w-50 mx-2">🔍 Details</a>
+                        <button class="btn btn-dark w-50 mx-2 favouriteBtn">♥️ Favourite</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% include 'partial/pagination.html.twig' with { 'pagination': pagination } %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ recipe.title }} - All comments {% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-baseline">
+                    <h2>💬 All Comments ({{ recipe.comments|length }})</h2>
+                    <div>
+                    <a href="{{ path('recipe_show', { id: recipe.id }) }}"
+                    class="btn btn-light">⏪ Back to recipe</a>
+                    <a href="{{ path('recipe_comment', { id: recipe.id }) }}"
+                    class="btn btn-secondary">➕ Add comment</a>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    {% for comment in recipe.comments %}
+                        <div class="alert alert-dark" role="alert">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="alert-heading">
+                                    👤 {{comment.author}}
+                                </h5>
+                                <small class="fw-light">📅 {{comment.createdAt|date("Y-m-d H:i:s")}}</small>
+                            </div>
+                            <p>
+                                ✍️ {{ comment.content }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

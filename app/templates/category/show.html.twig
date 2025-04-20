@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.name ?? 'Category' }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4 shadow">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">{{ category.name }}</h2>
+                </div>
+                <div class="card-body p-2 text-center">
+                    {% if category.thumb %}
+                        <img src="{{ asset(category.thumb) }}" alt="{{
+                        category.name }}" class="img-fluid rounded">
+                    {% else %}
+                        <img src="{{ asset('images/placeholder.jpg') }}" alt="Brak zdjęcia" class="img-fluid rounded">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">Description</h3>
+                </div>
+                <div class="card-body">
+                    <p>{{ category.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 text-end">
+        <div class="col-12 text-center">
+            <a href="{{ path('category_list') }}" class="w-25 btn btn-dark">⏪ Category list</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
