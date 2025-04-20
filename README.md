@@ -14,6 +14,8 @@ If you just want to run the project, with default settings, run the following co
 make first-defaults
 ```
 
+### Installation
+
 In case that you want to customize ports and hosts:
 
 ```bash
