@@ -50,22 +50,6 @@ class RecipeController extends BaseController
         ]);
     }
 
-    #[Route('/recipe/show/{id}', name: 'recipe_show')]
-    public function show(Recipe $recipe): Response
-    {
-        return $this->render('recipe/show.html.twig', [
-            'recipe' => $recipe,
-        ]);
-    }
-
-    #[Route('/recipe/comment/all/{id}', name: 'recipe_all_comments')]
-    public function showAllRecipeComments(Recipe $recipe): Response
-    {
-        return $this->render('recipe/allComments.html.twig', [
-            'recipe' => $recipe,
-        ]);
-    }
-
     #[Route('/recipe/comment/{id}', name: 'recipe_comment')]
     public function commentRecipe(Recipe $recipe, Request $req): Response
     {

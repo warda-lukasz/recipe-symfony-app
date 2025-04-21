@@ -38,15 +38,4 @@ class IngredientController extends BaseController
             'resultsForm' => $this->createForm(ResultsPerPageType::class)->createView(),
         ]);
     }
-
-    #[Route('/ingredient/{id}', name: 'ingredient_show')]
-    public function show(Ingredient $ingredient): Response
-    {
-        $thumbnail = $this->mealDbClient::getIngrendientImageUrl($ingredient->getName());
-
-        return $this->render('ingredient/show.html.twig', [
-            'ingredient' => $ingredient,
-            'thumbnail' => $thumbnail,
-        ]);
-    }
 }

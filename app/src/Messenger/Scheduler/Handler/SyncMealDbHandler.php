@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Scheduler\Handler;
+namespace App\Messenger\Scheduler\Handler;
 
-use App\Scheduler\Message\SyncMealDb;
+use App\Messenger\Scheduler\Message\SyncMealDb;
 use App\Service\LoggingService;
 use App\Service\MealDbSynchronizer;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;

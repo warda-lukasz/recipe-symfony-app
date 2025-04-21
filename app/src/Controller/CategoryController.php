@@ -24,12 +24,4 @@ class CategoryController extends BaseController
             'resultsForm' => $this->createForm(ResultsPerPageType::class)->createView(),
         ]);
     }
-
-    #[Route('/category/{id}', name: 'category_show')]
-    public function show(Category $category): Response
-    {
-        return $this->render('category/show.html.twig', [
-            'category' => $category
-        ]);
-    }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Scheduler;
+namespace App\Messenger\Scheduler;
 
-use App\Scheduler\Message\SyncMealDb;
+use App\Messenger\Scheduler\Message\SyncMealDb;
 use Symfony\Component\Scheduler\Attribute\AsSchedule;
 use Symfony\Component\Scheduler\RecurringMessage;
 use Symfony\Component\Scheduler\Schedule;

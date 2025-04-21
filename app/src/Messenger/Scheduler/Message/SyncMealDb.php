@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace App\Scheduler\Message;
+namespace App\Messenger\Scheduler\Message;
 
 class SyncMealDb {}
