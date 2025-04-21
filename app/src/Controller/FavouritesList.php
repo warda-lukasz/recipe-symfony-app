@@ -5,31 +5,25 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Dto\FavouritesDTO;
-use App\Form\ResultsPerPageType;
-use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Component\Form\FormFactoryInterface;
+use App\Entity\Recipe;
+use App\Messenger\QueryBus\Query\FavouritesQuery;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
-use Twig\Environment;
 
 #[AsController]
-class FavouritesList
+class FavouritesList extends BaseController
 {
-    public function __construct(
-        private Environment $twig,
-        private FormFactoryInterface $formFactory,
-        private PaginatorInterface $paginator,
-    ) {}
-
-    public function __invoke(#[MapQueryString] FavouritesDTO $dto)
+    #[Route('/recipe/favourites', name: 'recipe_favs')]
+    public function __invoke(#[MapQueryString] FavouritesDTO $dto, Request $request): Response
     {
-        return new Response(
-            $this->twig->render('recipe/index.html.twig', [
-                'pagination' => $this->paginator->paginate([]),
-                'resultsForm' => $this->formFactory->create(ResultsPerPageType::class)->createView(),
-            ])
-        );
+        return $this->respond('recipe/favs.html.twig', [
+            'pagination' => $this->queryBus->query(
+                new FavouritesQuery($dto, $request, Recipe::class, 'r', 'title')
+            ),
+            'resultsForm' => $this->getResultsForm(),
+        ]);
     }
 }

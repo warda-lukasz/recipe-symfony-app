@@ -8,7 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
-class CreateComment extends BasedController
+class CreateComment extends BaseController
 {
     public function __construct(
         protected Environment $twig,

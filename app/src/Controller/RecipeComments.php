@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
 #[Route('/recipe/{id}/comments', name: 'recipe_all_comments')]
-class RecipeComments extends BasedController
+class RecipeComments extends BaseController
 {
     public function __invoke(Recipe $recipe): Response
     {

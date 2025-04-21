@@ -1,4 +1,0 @@
-
-ingredient
-ingredient
-$ingredient

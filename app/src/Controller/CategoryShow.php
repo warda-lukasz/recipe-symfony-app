@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
 #[Route('/category/{id}', name: 'category_show')]
-class CategoryShow extends BasedController
+class CategoryShow extends BaseController
 {
     public function __invoke(Category $category)
     {

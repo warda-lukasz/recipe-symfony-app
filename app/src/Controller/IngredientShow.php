@@ -13,7 +13,7 @@ use Twig\Environment;
 
 #[AsController]
 #[Route('/ingredient/{id}', name: 'ingredient_show')]
-class IngredientShow extends BasedController
+class IngredientShow extends BaseController
 {
     public function __construct(
         protected Environment $twig,
