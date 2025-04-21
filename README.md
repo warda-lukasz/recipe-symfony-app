@@ -11,7 +11,7 @@ so I decided to put the code on GitHub.
 If you just want to run the project, with default settings, run the following command:
 
 ```bash
-make first-defaults
+$ make first-defaults
 ```
 
 ### Instructions: 👾
@@ -19,7 +19,7 @@ make first-defaults
 In case that you want to customize ports and hosts:
 
 ```bash
-cp docker-compose.yaml.dist docker-compose.yaml
+$ cp docker-compose.yaml.dist docker-compose.yaml
 ```
 
 Do your changes in `docker-compose.yaml` file. 
@@ -27,7 +27,7 @@ Do your changes in `docker-compose.yaml` file.
 Then run:
 
 ```bash
-make first
+$ make first
 ```
 
 And finally, if you don't want to use `make`, you can look at [manual installation instructions](/docs/manual_installation.md).
