@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Messenger\QueryBus\Handler;
 
-use App\Messenger\QueryBus\Query\QueryInterface;
 use App\Messenger\QueryBus\Query\QueryListInterface;
 use App\Messenger\QueryBus\QueryBusInterface;
 use Doctrine\ORM\EntityManagerInterface;
