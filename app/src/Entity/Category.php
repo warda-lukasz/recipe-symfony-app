@@ -7,7 +7,6 @@ namespace App\Entity;
 use App\Dto\CategoryDTO;
 use App\Dto\DtoInterface;
 use App\Repository\CategoryRepository;
-use App\Trait\ExternalIdEntityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -119,8 +118,7 @@ class Category implements BuildableFromDTO
             ->setExternalId($dto->externalId)
             ->setName($dto->name)
             ->setThumb($dto->thumb)
-            ->setDescription($dto->description)
-        ;
+            ->setDescription($dto->description);
 
         return $category;
     }

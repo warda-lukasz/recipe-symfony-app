@@ -6,7 +6,6 @@ namespace App\Entity;
 
 use App\Dto\DtoInterface;
 use App\Dto\IngredientDTO;
-use App\Trait\ExternalIdEntityTrait;
 use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

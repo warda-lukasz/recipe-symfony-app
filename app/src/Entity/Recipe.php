@@ -6,7 +6,6 @@ namespace App\Entity;
 
 use App\Dto\DtoInterface;
 use App\Repository\RecipeRepository;
-use App\Trait\ExternalIdEntityTrait;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
