@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Category;
 
+use App\Controller\BaseController;
 use App\Entity\Category;
 use App\Messenger\QueryBus\Query\ShowQuery;
 use Symfony\Component\HttpFoundation\Response;

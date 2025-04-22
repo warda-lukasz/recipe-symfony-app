@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Comment;
 
+use App\Controller\BaseController;
 use App\Dto\CommentDTO;
 use App\Entity\Comment;
 use App\Entity\Recipe;

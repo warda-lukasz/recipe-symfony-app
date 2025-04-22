@@ -2,26 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Ingredient;
 
-use App\Entity\Category;
+use App\Controller\BaseController;
+use App\Entity\Ingredient;
 use App\Messenger\QueryBus\Query\ListQuery;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
-#[Route('/category/list', name: 'category_list')]
-class CategoryList extends BaseController
+#[Route('/ingredient/list', name: 'ingredient_list')]
+class IngredientList extends BaseController
 {
     public function __invoke(): Response
     {
-        return $this->respond('category/index.html.twig', [
+        return $this->respond('ingredient/index.html.twig', [
             'pagination' => $this->queryBus->query(
                 new ListQuery(
                     request: $this->requestStack->getCurrentRequest(),
-                    entityClass: Category::class,
-                    alias: 'c',
+                    entityClass: Ingredient::class,
+                    alias: 'i',
                     sortField: 'name'
                 )
             ),

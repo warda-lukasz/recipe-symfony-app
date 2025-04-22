@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Ingredient;
 
+use App\Controller\BaseController;
 use App\Entity\Ingredient;
 use App\Infrastructure\MealDb\Client\MealDbClientInterface;
 use App\Messenger\CommandBus\CommandBusInterface;
@@ -18,8 +19,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
-//Podziel też na foldery 
-//
 #[AsController]
 #[Route('/ingredient/{id}', name: 'ingredient_show')]
 class IngredientShow extends BaseController

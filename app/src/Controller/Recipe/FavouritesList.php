@@ -2,24 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\Controller\Recipe;
 
+use App\Controller\BaseController;
+use App\Dto\FavouritesDTO;
 use App\Entity\Recipe;
-use App\Messenger\QueryBus\Query\ListQuery;
-use Symfony\Component\HttpFoundation\Request;
+use App\Messenger\QueryBus\Query\FavouritesQuery;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[AsController]
-#[Route('/recipe/list', name: 'recipe_list')]
-class RecipeList extends BaseController
+class FavouritesList extends BaseController
 {
-    public function __invoke(): Response
+    #[Route('/recipe/favourites', name: 'recipe_favs')]
+    public function __invoke(#[MapQueryString] FavouritesDTO $dto): Response
     {
-        return $this->respond('recipe/index.html.twig', [
+        return $this->respond('recipe/favs.html.twig', [
             'pagination' => $this->queryBus->query(
-                new ListQuery(
+                new FavouritesQuery(
+                    dto: $dto,
                     request: $this->requestStack->getCurrentRequest(),
                     entityClass: Recipe::class,
                     alias: 'r',
