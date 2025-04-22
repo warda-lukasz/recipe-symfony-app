@@ -29,10 +29,10 @@ final class FavouritesQueryHandler extends AbstractListQueryHandler
 
     protected function filterQuery(): void
     {
-        $this->queryBuilder
-            ->where($this->query->getAlias() . '.id IN (:favs)')
-            ->setParameter('favs', $this->dto->favourites);
-
         parent::filterQuery();
+
+        $this->queryBuilder
+            ->andWhere($this->query->getAlias() . '.id IN (:favs)')
+            ->setParameter('favs', $this->dto->favourites);
     }
 }

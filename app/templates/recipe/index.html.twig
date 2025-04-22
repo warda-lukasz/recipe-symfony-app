@@ -9,12 +9,14 @@
 
 {% block content %}
 <div class="container">
+    {%block header %}
         {% include 'partial/listHeader.html.twig' with { 
             'header': 'Recipes',
             'pathName': 'recipe_list',
             'field': 'r.title',
             'fieldName': 'Title'
         } %}
+    {% endblock %}
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
         {% for recipe in pagination %}
         <div class="col">
