@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class EntitiesFieldAsArrayQueryHandler
+class EntitiesFieldAsArrayQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,

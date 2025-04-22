@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Command;
+namespace App\AppCommand;
 
 use App\Entity\Recipe;
 use App\Messenger\CommandBus\Command\GenerateComments;

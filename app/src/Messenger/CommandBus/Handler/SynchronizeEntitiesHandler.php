@@ -10,7 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler()]
-class SynchronizeEntitiesHandler
+class SynchronizeEntitiesHandler implements CommandHandlerInterface
 {
     public function __construct(
         private readonly EntityFactory $entityFactory,

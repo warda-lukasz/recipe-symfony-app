@@ -6,3 +6,6 @@ framework:
                 middleware:
                     - validation
                     - doctrine_transaction
+            query.bus:
+                middleware:
+                    - validation

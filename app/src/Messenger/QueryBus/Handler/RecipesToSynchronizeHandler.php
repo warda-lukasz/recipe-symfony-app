@@ -15,7 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class RecipesToSynchronizeHandler
+class RecipesToSynchronizeHandler implements QueryHandlerInterface
 {
     public function __construct(
         private CategoryRepository $categoryRepo,

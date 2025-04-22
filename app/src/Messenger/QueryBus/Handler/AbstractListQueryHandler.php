@@ -11,7 +11,7 @@ use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
-abstract class AbstractListQueryHandler
+abstract class AbstractListQueryHandler implements QueryHandlerInterface
 {
     protected QueryBuilder $queryBuilder;
     protected QueryListInterface $query;

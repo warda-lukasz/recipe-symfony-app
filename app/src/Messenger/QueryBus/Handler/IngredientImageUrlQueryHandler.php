@@ -12,7 +12,7 @@ use App\Messenger\QueryBus\QueryBusInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class IngredientImageUrlQueryHandler
+class IngredientImageUrlQueryHandler implements QueryHandlerInterface
 {
     public function __construct(
         private readonly MealDbClientInterface $mealDbClient,

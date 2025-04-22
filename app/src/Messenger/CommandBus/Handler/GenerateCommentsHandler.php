@@ -15,7 +15,7 @@ use Faker\Generator;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class GenerateCommentsHandler
+class GenerateCommentsHandler implements CommandHandlerInterface
 {
     private readonly Generator $faker;
 

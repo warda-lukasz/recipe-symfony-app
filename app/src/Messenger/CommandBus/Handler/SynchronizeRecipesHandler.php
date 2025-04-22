@@ -10,7 +10,7 @@ use App\Repository\RecipeRepository;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class SynchronizeRecipesHandler
+class SynchronizeRecipesHandler implements CommandHandlerInterface
 {
     public function __construct(
         private readonly RecipeFactory $recipeFactory,

@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class NewEntitiesToSynchronizeHandler
+class NewEntitiesToSynchronizeHandler implements QueryHandlerInterface
 {
     public function __construct(
         private readonly MealDbClientInterface $mealDbClient,
