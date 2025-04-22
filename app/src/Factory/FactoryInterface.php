@@ -9,5 +9,5 @@ use App\Entity\EntityInterface;
 
 interface FactoryInterface
 {
-    public function create(DtoInterface $dto): EntityInterface;
+    public function create(DtoInterface $dto, string $entityclass, string $dtoClass): EntityInterface;
 }

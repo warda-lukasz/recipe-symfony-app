@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Dto\BuildableFromArray;
+use App\Dto\DtoInterface;
 use App\Dto\IngredientDTO;
+use App\Exception\InvalidDtoException;
 use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
-use InvalidArgumentException;
 
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
 #[ORM\Index(name: 'idx_ingredient_name', fields: ['name'])]
-class Ingredient implements BuildableFromDTO, EntityInterface
+class Ingredient implements EntityInterface
 {
     use ExternalIdEntityTrait;
 
@@ -43,8 +43,17 @@ class Ingredient implements BuildableFromDTO, EntityInterface
     ]
     private ?Collection $measurements;
 
-    public function __construct()
+    public function __construct(DtoInterface $dto)
     {
+        if (!$dto instanceof IngredientDTO) {
+            throw new InvalidDtoException($dto, IngredientDTO::class);
+        }
+
+        $this->externalId = $dto->externalId;
+        $this->name = $dto->name;
+        $this->description = $dto->description;
+        $this->type = $dto->type;
+
         $this->measurements = new ArrayCollection();
     }
 
@@ -109,22 +118,5 @@ class Ingredient implements BuildableFromDTO, EntityInterface
         $this->measurements->removeElement($measurement);
 
         return $this;
-    }
-
-    public static function fromDto(BuildableFromArray $dto): self
-    {
-        if (!$dto instanceof IngredientDTO) {
-            throw new InvalidArgumentException(sprintf(
-                'Expected instance of %s, got %s',
-                IngredientDTO::class,
-                get_class($dto)
-            ));
-        }
-
-        return (new self())
-            ->setExternalId($dto->externalId)
-            ->setName($dto->name)
-            ->setDescription($dto->description)
-            ->setType($dto->type);
     }
 }

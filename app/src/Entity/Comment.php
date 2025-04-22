@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Dto\CommentDTO;
+use App\Dto\DtoInterface;
+use App\Exception\InvalidDtoException;
 use App\Repository\CommentRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
@@ -30,14 +33,15 @@ class Comment implements EntityInterface
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     private ?string $author = null;
 
-    public function __construct(
-        string $content,
-        string $author,
-        Recipe $recipe,
-    ) {
-        $this->content = $content;
-        $this->author = $author;
-        $this->recipe = $recipe;
+    public function __construct(DtoInterface $dto)
+    {
+        if (!$dto instanceof CommentDTO) {
+            throw new InvalidDtoException($dto, CommentDTO::class);
+        }
+
+        $this->content = $dto->content;
+        $this->author = $dto->author;
+        $this->recipe = $dto->recipe;
         $this->createdAt = new DateTimeImmutable();
     }
 

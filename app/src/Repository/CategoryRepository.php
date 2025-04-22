@@ -17,4 +17,6 @@ class CategoryRepository extends DoctrineRepository
             ->getQuery()
             ->getSingleColumnResult();
     }
+
+    //TODO: dodaj sobie wyniki z bazy cachowane
 }

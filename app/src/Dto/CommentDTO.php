@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
+use App\Entity\Recipe;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CommentDTO implements DtoInterface
@@ -27,5 +28,6 @@ class CommentDTO implements DtoInterface
         )]
         public ?string $content = null,
         public ?int $recipeId = null,
+        public ?Recipe $recipe = null,
     ) {}
 }

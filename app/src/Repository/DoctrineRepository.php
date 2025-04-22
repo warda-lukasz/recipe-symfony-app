@@ -7,14 +7,16 @@ namespace App\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\EntityInterface;
+use App\Service\CacheService;
 
 class DoctrineRepository extends ServiceEntityRepository
 {
     protected static string $entity = '';
     protected int $chunk = 0;
 
-    public function __construct(ManagerRegistry $registry)
-    {
+    public function __construct(
+        ManagerRegistry $registry,
+    ) {
         parent::__construct($registry, static::$entity);
     }
 

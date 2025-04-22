@@ -4,4 +4,9 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-interface EntityInterface {}
+use App\Dto\DtoInterface;
+
+interface EntityInterface
+{
+    public function __construct(DtoInterface $dto);
+}

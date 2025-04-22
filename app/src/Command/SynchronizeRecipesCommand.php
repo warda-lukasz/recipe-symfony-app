@@ -19,12 +19,6 @@ use Throwable;
 )]
 class SynchronizeRecipesCommand extends Command
 {
-    private const array SUPPORTED_TYPES = [
-        'categories',
-        'ingredients',
-        'recipes',
-    ];
-
     /**
      * @param SynchronizerInterface[] $synchronizers 
      */
@@ -43,10 +37,7 @@ class SynchronizeRecipesCommand extends Command
         $io->comment('This may take a while...');
 
         try {
-            /** @var SynchronizerInterface $synchronizer */
-            foreach (self::SUPPORTED_TYPES as $type) {
-                $this->synchronize($type, $io);
-            }
+            $this->recipeSynchronizer->synchronize();
         } catch (Throwable $e) {
             $io->error('🤯' . $e->getMessage());
 
@@ -58,14 +49,5 @@ class SynchronizeRecipesCommand extends Command
         $io->success('Data have been synchronized successfully.');
 
         return Command::SUCCESS;
-    }
-
-    private function synchronize(string $type,  SymfonyStyle $io): void
-    {
-        $this->logger->startProcess($type . ' synchronization');
-        $io->section("Synchronizing $type...");
-        $this->recipeSynchronizer->synchronize($type);
-        $this->logger->endProcess($type);
-        $io->info("$type have been synchronized successfully.");
     }
 }

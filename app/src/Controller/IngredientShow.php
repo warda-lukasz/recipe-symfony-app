@@ -18,6 +18,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Twig\Environment;
 
+//Podziel też na foldery 
+//
 #[AsController]
 #[Route('/ingredient/{id}', name: 'ingredient_show')]
 class IngredientShow extends BaseController

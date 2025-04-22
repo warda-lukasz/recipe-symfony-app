@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Dto\DtoInterface;
+use App\Dto\MeasurementDTO;
+use App\Exception\InvalidDtoException;
 use App\Repository\MeasurementRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,16 +17,26 @@ class Measurement implements EntityInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(targetEntity: Ingredient::class, inversedBy: 'measurements')]
+    #[ORM\ManyToOne(targetEntity: Ingredient::class, inversedBy: 'measurements', cascade: ['persist'])]
     #[ORM\JoinColumn(name: 'ingredient_id', referencedColumnName: 'id', nullable: false)]
     private Ingredient $ingredient;
 
-    #[ORM\ManyToOne(targetEntity: Recipe::class, inversedBy: 'measurements')]
+    #[ORM\ManyToOne(targetEntity: Recipe::class, inversedBy: 'measurements', cascade: ['persist'])]
     #[ORM\JoinColumn(name: 'recipe_id', referencedColumnName: 'id', nullable: false)]
     private Recipe $recipe;
 
     #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $measure = null;
+
+    public function __construct(DtoInterface $dto)
+    {
+        if (!$dto instanceof MeasurementDTO) {
+            throw new InvalidDtoException($dto, MeasurementDTO::class);
+        }
+
+        $this->ingredient = $dto->ingredient;
+        $this->recipe = $dto->recipe;
+    }
 
     public function getId(): ?int
     {

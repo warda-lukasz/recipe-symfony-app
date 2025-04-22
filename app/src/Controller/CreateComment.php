@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Dto\CommentDTO;
+use App\Entity\Comment;
 use App\Entity\Recipe;
 use App\Form\CommentType;
-use App\Messenger\CommandBus\Command\CreateCommentCommand;
+use App\Messenger\CommandBus\Command\CreateEntity;
 use App\Messenger\QueryBus\Query\ShowQuery;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,12 @@ class CreateComment extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $commentDto = $form->getData();
             $commentDto->recipeId = $recipe->getId();
-            $this->commandBus->dispatch(new CreateCommentCommand($commentDto));
+            $commentDto->recipe = $recipe;
+
+            $this->commandBus->dispatch(
+                new CreateEntity($commentDto, Comment::class)
+            );
+
             $this->addFlash('success', 'Comment added successfully! 🤩');
 
             return new RedirectResponse(

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Factory;
 
 use App\Dto\DtoInterface;
+use App\Dto\MeasurementDTO;
 use App\Dto\RecipeDTO;
 use App\Entity\EntityInterface;
 use App\Entity\Measurement;
@@ -21,45 +22,27 @@ class RecipeFactory extends AbstractFactory
         private readonly IngredientRepository $ingredientRepository,
     ) {}
 
-    public function create(DtoInterface $dto): EntityInterface
+    public function create(DtoInterface $dto, string $entityClass = Recipe::class, string $dtoClass = RecipeDTO::class): EntityInterface
     {
-        if (!$dto instanceof RecipeDTO) {
+        if (!$dto instanceof $dtoClass) {
             throw new InvalidArgumentException('Invalid DTO type');
         }
-        return $this->createFromDto($dto);
-    }
 
-    public function createFromDto(RecipeDto $dto): Recipe
-    {
-        $recipe = new Recipe();
+        $recipe = new Recipe($dto);
 
-        $this->buildBasicProperties($dto, $recipe);
         $this->attachCategory($dto, $recipe);
         $this->attachMeasurements($dto, $recipe);
 
         return $recipe;
     }
 
-    private function buildBasicProperties(RecipeDTO $dto, Recipe $recipe): void
-    {
-        $recipe
-            ->setExternalId($dto->externalId)
-            ->setTitle($dto->title)
-            ->setArea($dto->area)
-            ->setInstructions($dto->instructions)
-            ->setMealThumb($dto->thumb)
-            ->setTags($dto->tags)
-            ->setYoutube($dto->yt)
-            ->setSource($dto->source)
-        ;
-    }
-
     private function attachCategory(RecipeDTO $dto, Recipe $recipe): void
     {
+        /** @var Category $category */
         $category = $this->categoryRepository->findOneBy(['name' => $dto->category]);
 
         if ($category) {
-            $recipe->setCategory($category);
+            $category->addRecipe($recipe);
         }
     }
 
@@ -81,9 +64,9 @@ class RecipeFactory extends AbstractFactory
                 continue;
             }
 
-            $measurement = (new Measurement())
-                ->setIngredient($ingredient)
-                ->setRecipe($recipe)
+            $measurementDTO = new MeasurementDTO($ingredient, $recipe);
+
+            $measurement = (new Measurement($measurementDTO))
                 ->setMeasure($dto->measurements[$key]);
 
             $ingredient->addMeasurement($measurement);

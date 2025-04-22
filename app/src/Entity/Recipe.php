@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Dto\BuildableFromArray;
+use App\Dto\DtoInterface;
+use App\Dto\RecipeDTO;
+use App\Exception\InvalidDtoException;
 use App\Repository\RecipeRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,7 +18,7 @@ use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[ORM\Index(name: 'idx_recipe_title', fields: ['title'])]
-class Recipe implements BuildableFromDTO, EntityInterface
+class Recipe implements EntityInterface
 {
     use ExternalIdEntityTrait;
 
@@ -27,7 +30,12 @@ class Recipe implements BuildableFromDTO, EntityInterface
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $title = null;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'recipes', fetch: 'EXTRA_LAZY')]
+    #[ORM\ManyToOne(
+        targetEntity: Category::class,
+        inversedBy: 'recipes',
+        cascade: ['persist', 'remove'],
+        fetch: 'EXTRA_LAZY',
+    )]
     #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: false)]
     private ?Category $category = null;
 
@@ -48,9 +56,6 @@ class Recipe implements BuildableFromDTO, EntityInterface
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
     private ?string $source;
-
-    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
-    private ?string $imageSource = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, length: 255, nullable: true)]
     private ?DateTime $dateModified = null;
@@ -75,8 +80,22 @@ class Recipe implements BuildableFromDTO, EntityInterface
     ]
     private Collection $measurements;
 
-    public function __construct()
+    public function __construct(DtoInterface $dto)
     {
+        if (!$dto instanceof RecipeDTO) {
+            throw new InvalidDtoException($dto, RecipeDTO::class);
+        }
+
+        $this->externalId = $dto->externalId;
+        $this->title = $dto->title;
+        $this->area = $dto->area;
+        $this->instructions = $dto->instructions;
+        $this->mealThumb = $dto->thumb;
+        $this->tags = $dto->tags;
+        $this->youtube = $dto->yt;
+        $this->source = $dto->source;
+        $this->dateModified = $dto->dateModified;
+
         $this->measurements = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
@@ -182,18 +201,6 @@ class Recipe implements BuildableFromDTO, EntityInterface
         return $this;
     }
 
-    public function getImageSource(): ?string
-    {
-        return $this->imageSource;
-    }
-
-    public function setImageSource(?string $imageSource): self
-    {
-        $this->imageSource = $imageSource;
-
-        return $this;
-    }
-
     public function getDateModified(): ?DateTime
     {
         return $this->dateModified;
@@ -260,10 +267,5 @@ class Recipe implements BuildableFromDTO, EntityInterface
         }
 
         return $this;
-    }
-
-    public static function fromDto(BuildableFromArray $dto): BuildableFromDTO
-    {
-        return new self();
     }
 }

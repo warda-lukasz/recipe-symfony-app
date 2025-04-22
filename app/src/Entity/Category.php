@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Dto\CategoryDTO;
-use App\Dto\BuildableFromArray;
+use App\Dto\DtoInterface;
+use App\Exception\InvalidDtoException;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
-use InvalidArgumentException;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category implements BuildableFromDTO, EntityInterface
+class Category implements EntityInterface
 {
     use ExternalIdEntityTrait;
 
@@ -32,11 +32,24 @@ class Category implements BuildableFromDTO, EntityInterface
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'category', fetch: 'EXTRA_LAZY')]
+    #[ORM\OneToMany(
+        targetEntity: Recipe::class,
+        mappedBy: 'category',
+        /* cascade: ['persist', 'remove'], */
+        fetch: 'EXTRA_LAZY'
+    )]
     private ?Collection $recipes = null;
 
-    public function __construct()
+    public function __construct(DtoInterface $dto)
     {
+        if (!$dto instanceof CategoryDTO) {
+            throw new InvalidDtoException($dto, CategoryDTO::class);
+        }
+
+        $this->name = $dto->name;
+        $this->thumb = $dto->thumb;
+        $this->description = $dto->description;
+        $this->externalId = $dto->externalId;
         $this->recipes = new ArrayCollection();
     }
 
@@ -106,20 +119,5 @@ class Category implements BuildableFromDTO, EntityInterface
         }
 
         return $this;
-    }
-
-    public static function fromDto(BuildableFromArray $dto): self
-    {
-        if (!$dto instanceof CategoryDTO) {
-            throw new InvalidArgumentException('Invalid DTO type');
-        }
-
-        $category = (new self())
-            ->setExternalId($dto->externalId)
-            ->setName($dto->name)
-            ->setThumb($dto->thumb)
-            ->setDescription($dto->description);
-
-        return $category;
     }
 }

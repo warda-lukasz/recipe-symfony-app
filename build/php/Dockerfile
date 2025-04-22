@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     mysqli \
     pdo pdo_mysql
 
+RUN echo "memory_limit = 256M" > /usr/local/etc/php/conf.d/memory-limit.ini
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony*/bin/symfony /usr/local/bin/symfony

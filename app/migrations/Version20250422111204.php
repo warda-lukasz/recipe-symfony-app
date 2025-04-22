@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250419202955 extends AbstractMigration
+final class Version20250422111204 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -33,7 +33,7 @@ final class Version20250419202955 extends AbstractMigration
             CREATE TABLE measurement (id INT AUTO_INCREMENT NOT NULL, ingredient_id INT NOT NULL, recipe_id INT NOT NULL, measure VARCHAR(255) NOT NULL, INDEX IDX_2CE0D811933FE08C (ingredient_id), INDEX IDX_2CE0D81159D8A214 (recipe_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
-            CREATE TABLE recipe (id INT AUTO_INCREMENT NOT NULL, category_id INT NOT NULL, title VARCHAR(255) DEFAULT NULL, area VARCHAR(255) DEFAULT NULL, instructions LONGTEXT NOT NULL, meal_thumb VARCHAR(255) DEFAULT NULL, tags VARCHAR(255) DEFAULT NULL, youtube VARCHAR(255) DEFAULT NULL, source VARCHAR(255) DEFAULT NULL, image_source VARCHAR(255) DEFAULT NULL, date_modified DATE DEFAULT NULL, external_id VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_DA88B1379F75D7B0 (external_id), INDEX IDX_DA88B13712469DE2 (category_id), INDEX idx_recipe_title (title), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
+            CREATE TABLE recipe (id INT AUTO_INCREMENT NOT NULL, category_id INT NOT NULL, title VARCHAR(255) DEFAULT NULL, area VARCHAR(255) DEFAULT NULL, instructions LONGTEXT NOT NULL, meal_thumb VARCHAR(255) DEFAULT NULL, tags VARCHAR(255) DEFAULT NULL, youtube VARCHAR(255) DEFAULT NULL, source VARCHAR(255) DEFAULT NULL, date_modified DATE DEFAULT NULL, external_id VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_DA88B1379F75D7B0 (external_id), INDEX IDX_DA88B13712469DE2 (category_id), INDEX idx_recipe_title (title), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE comment ADD CONSTRAINT FK_9474526C59D8A214 FOREIGN KEY (recipe_id) REFERENCES recipe (id)

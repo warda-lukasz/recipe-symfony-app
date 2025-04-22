@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Messenger\CommandBus\Command;
+
+use App\Dto\DtoInterface;
+
+class CreateEntity implements CommandInterface
+{
+    public function __construct(
+        private DtoInterface $dto,
+        private string $entityClass,
+    ) {}
+
+    public function getDto(): DtoInterface
+    {
+        return $this->dto;
+    }
+
+    public function getEntityClass(): string
+    {
+        return $this->entityClass;
+    }
+
+    public function getDtoClass(): string
+    {
+        return get_class($this->dto);
+    }
+}
