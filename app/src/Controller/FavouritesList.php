@@ -17,11 +17,17 @@ use Symfony\Component\Routing\Attribute\Route;
 class FavouritesList extends BaseController
 {
     #[Route('/recipe/favourites', name: 'recipe_favs')]
-    public function __invoke(#[MapQueryString] FavouritesDTO $dto, Request $request): Response
+    public function __invoke(#[MapQueryString] FavouritesDTO $dto): Response
     {
         return $this->respond('recipe/favs.html.twig', [
             'pagination' => $this->queryBus->query(
-                new FavouritesQuery($dto, $request, Recipe::class, 'r', 'title')
+                new FavouritesQuery(
+                    dto: $dto,
+                    request: $this->requestStack->getCurrentRequest(),
+                    entityClass: Recipe::class,
+                    alias: 'r',
+                    sortField: 'title'
+                )
             ),
             'resultsForm' => $this->getResultsForm(),
         ]);

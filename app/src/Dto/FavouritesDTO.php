@@ -6,7 +6,7 @@ namespace App\Dto;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class FavouritesDTO
+class FavouritesDTO implements DtoInterface
 {
     public function __construct(
         #[Assert\Type('array')]

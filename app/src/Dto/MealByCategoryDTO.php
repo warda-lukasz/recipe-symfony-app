@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
-use App\Dto\DtoInterface;
+use App\Dto\BuildableFromArray;
 
-class MealByCategoryDTO implements DtoInterface
+class MealByCategoryDTO implements BuildableFromArray, DtoInterface
 {
     public function __construct(
         public readonly ?string $externalId = null,

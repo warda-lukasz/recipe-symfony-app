@@ -6,28 +6,20 @@ namespace App\Messenger\QueryBus\Query;
 
 use Symfony\Component\HttpFoundation\Request;
 
-abstract class AbstractListQuery implements QueryListInterface
+abstract class AbstractListQuery extends AbstractQuery implements QueryListInterface
 {
     public function __construct(
-        private Request $request,
-        private string $entityClass,
-        private string $alias,
-        private string $sortField = 'id'
-    ) {}
+        protected Request $request,
+        protected string $sortField = 'id',
+        protected ?string $entityClass = null,
+        protected ?string $alias = null,
+    ) {
+        parent::__construct($entityClass, $alias);
+    }
 
     public function getRequest(): Request
     {
         return $this->request;
-    }
-
-    public function getEntityClass(): string
-    {
-        return $this->entityClass;
-    }
-
-    public function getAlias(): string
-    {
-        return $this->alias;
     }
 
     public function getSortField(): string

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
-class Comment
+class Comment implements EntityInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'IDENTITY')]
@@ -29,6 +29,17 @@ class Comment
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: false)]
     private ?string $author = null;
+
+    public function __construct(
+        string $content,
+        string $author,
+        Recipe $recipe,
+    ) {
+        $this->content = $content;
+        $this->author = $author;
+        $this->recipe = $recipe;
+        $this->createdAt = new DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

@@ -15,11 +15,16 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/recipe/list', name: 'recipe_list')]
 class RecipeList extends BaseController
 {
-    public function __invoke(Request $req): Response
+    public function __invoke(): Response
     {
         return $this->respond('recipe/index.html.twig', [
             'pagination' => $this->queryBus->query(
-                new ListQuery($req, Recipe::class, 'r', 'title')
+                new ListQuery(
+                    request: $this->requestStack->getCurrentRequest(),
+                    entityClass: Recipe::class,
+                    alias: 'r',
+                    sortField: 'title'
+                )
             ),
             'resultsForm' => $this->getResultsForm(),
         ]);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
-class RecipeDTO implements DtoInterface
+class RecipeDTO implements BuildableFromArray, DtoInterface
 {
 
     public function __construct(

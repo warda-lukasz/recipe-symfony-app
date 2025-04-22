@@ -5,7 +5,7 @@ namespace App\Messenger\QueryBus\Query;
 
 interface QueryInterface
 {
-    public function getEntityClass(): string;
+    public function getEntityClass(): ?string;
 
-    public function getAlias(): string;
+    public function getAlias(): ?string;
 }

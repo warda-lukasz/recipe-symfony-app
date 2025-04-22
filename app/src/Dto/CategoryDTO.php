@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
-class CategoryDTO implements DtoInterface
+class CategoryDTO implements BuildableFromArray, DtoInterface
 {
     public function __construct(
         public readonly ?string $externalId,

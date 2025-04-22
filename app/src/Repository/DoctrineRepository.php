@@ -6,7 +6,7 @@ namespace App\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\BuildableFromDTO;
+use App\Entity\EntityInterface;
 
 class DoctrineRepository extends ServiceEntityRepository
 {
@@ -27,7 +27,7 @@ class DoctrineRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function save(BuildableFromDTO $entity, bool $flush = true): void
+    public function save(EntityInterface $entity, bool $flush = true): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -37,7 +37,7 @@ class DoctrineRepository extends ServiceEntityRepository
         }
     }
 
-    public function saveChunk(BuildableFromDTO $entity, int $chunk = 10, bool $forceInit = false): void
+    public function saveChunk(EntityInterface $entity, int $chunk = 10, bool $forceInit = false): void
     {
         if ($forceInit) {
             $this->flushChunk();
@@ -52,7 +52,7 @@ class DoctrineRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(BuildableFromDTO $entity, bool $flush = true): void
+    public function remove(EntityInterface $entity, bool $flush = true): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -61,7 +61,7 @@ class DoctrineRepository extends ServiceEntityRepository
         }
     }
 
-    public function refresh(BuildableFromDTO $entity): void
+    public function refresh(EntityInterface $entity): void
     {
         $this->getEntityManager()->refresh($entity);
     }

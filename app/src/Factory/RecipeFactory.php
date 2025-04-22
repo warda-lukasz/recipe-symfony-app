@@ -4,19 +4,30 @@ declare(strict_types=1);
 
 namespace App\Factory;
 
+use App\Dto\DtoInterface;
 use App\Dto\RecipeDTO;
+use App\Entity\EntityInterface;
 use App\Entity\Measurement;
 use App\Entity\Recipe;
 use App\Entity\Ingredient;
 use App\Repository\CategoryRepository;
 use App\Repository\IngredientRepository;
+use InvalidArgumentException;
 
-class RecipeFactory
+class RecipeFactory extends AbstractFactory
 {
     public function __construct(
         private readonly CategoryRepository $categoryRepository,
         private readonly IngredientRepository $ingredientRepository,
     ) {}
+
+    public function create(DtoInterface $dto): EntityInterface
+    {
+        if (!$dto instanceof RecipeDTO) {
+            throw new InvalidArgumentException('Invalid DTO type');
+        }
+        return $this->createFromDto($dto);
+    }
 
     public function createFromDto(RecipeDto $dto): Recipe
     {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Dto\CategoryDTO;
-use App\Dto\DtoInterface;
+use App\Dto\BuildableFromArray;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,7 +14,7 @@ use Doctrine\DBAL\Types\Types;
 use InvalidArgumentException;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category implements BuildableFromDTO
+class Category implements BuildableFromDTO, EntityInterface
 {
     use ExternalIdEntityTrait;
 
@@ -108,7 +108,7 @@ class Category implements BuildableFromDTO
         return $this;
     }
 
-    public static function fromDto(DtoInterface $dto): self
+    public static function fromDto(BuildableFromArray $dto): self
     {
         if (!$dto instanceof CategoryDTO) {
             throw new InvalidArgumentException('Invalid DTO type');

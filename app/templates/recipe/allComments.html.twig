@@ -12,7 +12,7 @@
                     <div>
                     <a href="{{ path('recipe_show', { id: recipe.id }) }}"
                     class="btn btn-light">⏪ Back to recipe</a>
-                    <a href="{{ path('recipe_comment', { id: recipe.id }) }}"
+                    <a href="{{ path('recipe_comment', { recipeId: recipe.id }) }}"
                     class="btn btn-secondary">➕ Add comment</a>
                     </div>
                 </div>

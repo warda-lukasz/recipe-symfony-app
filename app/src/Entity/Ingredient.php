@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Dto\DtoInterface;
+use App\Dto\BuildableFromArray;
 use App\Dto\IngredientDTO;
 use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -16,7 +16,7 @@ use InvalidArgumentException;
 
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
 #[ORM\Index(name: 'idx_ingredient_name', fields: ['name'])]
-class Ingredient implements BuildableFromDTO
+class Ingredient implements BuildableFromDTO, EntityInterface
 {
     use ExternalIdEntityTrait;
 
@@ -111,7 +111,7 @@ class Ingredient implements BuildableFromDTO
         return $this;
     }
 
-    public static function fromDto(DtoInterface $dto): self
+    public static function fromDto(BuildableFromArray $dto): self
     {
         if (!$dto instanceof IngredientDTO) {
             throw new InvalidArgumentException(sprintf(

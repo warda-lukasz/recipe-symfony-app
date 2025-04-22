@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Messenger\QueryBus\Query\ShowQuery;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Component\Routing\Attribute\Route;
@@ -13,10 +14,12 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/recipe/{id}/comments', name: 'recipe_all_comments')]
 class RecipeComments extends BaseController
 {
-    public function __invoke(Recipe $recipe): Response
+    public function __invoke(string $id): Response
     {
         return $this->respond('recipe/allComments.html.twig', [
-            'recipe' => $recipe,
+            'recipe' => $this->queryBus->query(
+                new ShowQuery($id, Recipe::class, 'r')
+            ),
         ]);
     }
 }

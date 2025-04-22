@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Dto\DtoInterface;
+use App\Dto\BuildableFromArray;
 use App\Repository\RecipeRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,7 +15,7 @@ use Doctrine\DBAL\Types\Types;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 #[ORM\Index(name: 'idx_recipe_title', fields: ['title'])]
-class Recipe implements BuildableFromDTO
+class Recipe implements BuildableFromDTO, EntityInterface
 {
     use ExternalIdEntityTrait;
 
@@ -262,7 +262,7 @@ class Recipe implements BuildableFromDTO
         return $this;
     }
 
-    public static function fromDto(DtoInterface $dto): BuildableFromDTO
+    public static function fromDto(BuildableFromArray $dto): BuildableFromDTO
     {
         return new self();
     }

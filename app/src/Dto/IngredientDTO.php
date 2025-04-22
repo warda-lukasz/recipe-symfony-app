@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Dto;
 
-class IngredientDTO implements DtoInterface
+class IngredientDTO implements BuildableFromArray, DtoInterface
 {
     public function __construct(
         public readonly ?string $externalId = null,

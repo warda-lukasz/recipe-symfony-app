@@ -15,11 +15,16 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/category/list', name: 'category_list')]
 class CategoryList extends BaseController
 {
-    public function __invoke(Request $req): Response
+    public function __invoke(): Response
     {
         return $this->respond('category/index.html.twig', [
             'pagination' => $this->queryBus->query(
-                new ListQuery($req, Category::class, 'c', 'name')
+                new ListQuery(
+                    request: $this->requestStack->getCurrentRequest(),
+                    entityClass: Category::class,
+                    alias: 'c',
+                    sortField: 'name'
+                )
             ),
             'resultsForm' => $this->getResultsForm(),
         ]);
