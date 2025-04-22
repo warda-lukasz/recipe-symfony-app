@@ -18,6 +18,9 @@ class MealsByCategoryQuery implements MealDbQueryInterface
         return sprintf('filter.php?c=%s', $this->category);
     }
 
+    /**
+     * @return MealByCategoryDTO[]
+     */
     public function parseResponse(array $responseData): array
     {
         $meals = [];

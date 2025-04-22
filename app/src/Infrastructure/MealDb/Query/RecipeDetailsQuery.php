@@ -17,6 +17,9 @@ class RecipeDetailsQuery implements MealDbQueryInterface
         return sprintf('lookup.php?i=%s', $this->externalId);
     }
 
+    /**
+     * @return RecipeDTO[]
+     */
     public function parseResponse(array $responseData): array
     {
         return [RecipeDTO::fromArray($responseData['meals'][0])];

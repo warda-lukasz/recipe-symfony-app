@@ -12,7 +12,7 @@ class CategoriesQuery implements MealDbQueryInterface
     }
 
     /**
-     * @return array<CategoryDTO>
+     * @return CategoryDTO[]
      */
     public function parseResponse(array $responseData): array
     {

@@ -31,14 +31,7 @@ class RecipesToSynchronizeHandler
     private function fetchNewRecipes(): array
     {
         $newRecipes = $this->filterNewRecipes();
-
         $recipes = [];
-
-        /* $recipes = $this->client->execute( */
-        /*     new RecipeDetailsQuery($newRecipes[0]) */
-        /* ); */
-        /*  */
-        /* return $recipes; */
 
         foreach ($newRecipes as $externalId) {
             $recipe = $this->client->execute(

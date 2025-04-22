@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Dto\BuildableFromArray;
 use App\Dto\DtoInterface;
 use App\Dto\RecipeDTO;
 use App\Exception\InvalidDtoException;

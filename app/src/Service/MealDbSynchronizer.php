@@ -20,8 +20,6 @@ class MealDbSynchronizer
         if (!$type) {
             $this->synchronizeAll();
         } else {
-            // NOTE: Remember to add the type to
-            // SynchronizeRecipesCommand::SUPPORTED_TYPES
             $this->synchronizeByType($type);
         }
     }

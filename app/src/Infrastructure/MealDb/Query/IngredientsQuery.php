@@ -12,7 +12,7 @@ class IngredientsQuery implements MealDbQueryInterface
     }
 
     /**
-     * @return array<array<string>>
+     * @return IngredientDTO[]
      */
     public function parseResponse(array $responseData): array
     {
