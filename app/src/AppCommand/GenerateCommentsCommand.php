@@ -27,11 +27,6 @@ class GenerateCommentsCommand extends Command
         parent::__construct();
     }
 
-    protected function configure(): void
-    {
-        $this->setDescription('Generuj przykładowe komentarze dla przepisów');
-    }
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
