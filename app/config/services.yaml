@@ -19,3 +19,11 @@ services:
             - "../src/DependencyInjection/"
             - "../src/Entity/"
             - "../src/Kernel.php"
+
+    App\Messenger\CommandBus\CommandBus:
+        arguments:
+            $messageBus: "@command.bus"
+
+    App\Messenger\QueryBus\QueryBus:
+        arguments:
+            $messageBus: "@query.bus"
