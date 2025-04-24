@@ -13,8 +13,10 @@ class CommandBus implements CommandBusInterface
     use HandleTrait;
 
     public function __construct(
-        private MessageBusInterface $messageBus,
-    ) {}
+        private MessageBusInterface $commandBus,
+    ) {
+        $this->messageBus = $commandBus;
+    }
 
     public function dispatch(CommandInterface $command): mixed
     {
