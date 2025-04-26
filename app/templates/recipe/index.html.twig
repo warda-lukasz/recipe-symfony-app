@@ -14,14 +14,15 @@
             'header': 'Recipes',
             'pathName': 'recipe_list',
             'field': 'r.title',
-            'fieldName': 'Title'
+            'fieldName': 'Title',
+            'icon': 'fa-solid fa-lemon',
         } %}
     {% endblock %}
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
         {% for recipe in pagination %}
         <div class="col">
             <div class="card m-3 p-3 shadow">
-                <h5 class="card-title text-center p-2">🍲 {{ recipe.title }} 🍲</h5>
+                <h5 class="card-title text-center p-2">{{ recipe.title }}</h5>
                 <img src="{{ recipe.mealThumb }}" class="card-img-top" alt="{{ recipe.title }}">
                 <div class="card-body pb-0">
                     <p class="card-text fw-light">
@@ -41,13 +42,14 @@
                     <div class="my-2 d-flex flex-column justify-content-between align-items-center"> 
                         <a href="{{ path('recipe_show', { id: recipe.id }) }}"
                         class="btn btn-dark w-100">
-                        🔍 Details 🔍</a>
+                             Details <i class="fa-solid fa-eye mx-1"></i>
+                        </a>
                         <a class="btn btn-dark w-100 my-2" href="{{ path('recipe_toggle_favourites', { id: recipe.id }) }}" >
                              {% if recipe.isFavouredByUser(app.user.username) %}
-                                 REMOVE
-                                <i class="fa-regular fa-heart"></i>
+                                 Add to favourite
+                                <i class="fa-solid fa-heart"></i>
                              {% else %}
-                                 ADD
+                                Remove from favourite
                                  <i class="fa-regular fa-heart"></i>
                              {% endif %}
                         </a>
