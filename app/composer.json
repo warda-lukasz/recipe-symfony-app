@@ -74,11 +74,16 @@
             "importmap:install": "symfony-cmd",
             "cache:clear": "symfony-cmd"
         },
+        "npm-install": [
+            "cd assets/vendor && npm install"
+        ],
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@npm-install"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "@npm-install"
         ]
     },
     "conflict": {

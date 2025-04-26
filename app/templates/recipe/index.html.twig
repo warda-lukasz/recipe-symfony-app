@@ -40,13 +40,16 @@
 
                     <div class="my-2 d-flex flex-column justify-content-between align-items-center"> 
                         <a href="{{ path('recipe_show', { id: recipe.id }) }}"
-                        class="btn btn-dark w-100">🔍 Details 🔍</a>
-                        {#{% set buttonContent =
-                        recipe.isFavouredByUser(getUsername()) ? 'Remove' :
-                        'Add' %}#}
-                        <a href="{{ path('recipe_toggle_favourites', { id: recipe.id }) }}" 
-                        class="w-100 btn btn-dark my-2 favouriteBtn">
-                            dupa
+                        class="btn btn-dark w-100">
+                        🔍 Details 🔍</a>
+                        <a class="btn btn-dark w-100 my-2" href="{{ path('recipe_toggle_favourites', { id: recipe.id }) }}" >
+                             {% if recipe.isFavouredByUser(app.user.username) %}
+                                 REMOVE
+                                <i class="fa-regular fa-heart"></i>
+                             {% else %}
+                                 ADD
+                                 <i class="fa-regular fa-heart"></i>
+                             {% endif %}
                         </a>
                     </div>
                   </div>

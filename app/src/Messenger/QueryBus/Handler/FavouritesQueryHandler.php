@@ -7,6 +7,7 @@ namespace App\Messenger\QueryBus\Handler;
 use App\Dto\FavouritesDTO;
 use App\Messenger\QueryBus\Query\FavouritesQuery;
 use Knp\Component\Pager\Pagination\PaginationInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
@@ -14,6 +15,11 @@ final class FavouritesQueryHandler extends AbstractListQueryHandler
 {
 
     private FavouritesDTO $dto;
+
+    public function __construct(
+        private readonly Security $security,
+    ) {}
+
 
     public function __invoke(FavouritesQuery $query): PaginationInterface
     {
@@ -32,7 +38,8 @@ final class FavouritesQueryHandler extends AbstractListQueryHandler
         parent::filterQuery();
 
         $this->queryBuilder
-            ->andWhere($this->query->getAlias() . '.id IN (:favs)')
-            ->setParameter('favs', $this->dto->favourites);
+            ->join('r.favourites', 'f', 'WITH')
+            ->andWhere('f.username = :username')
+            ->setParameter('username', $this->security->getUser()->getUsername());
     }
 }
