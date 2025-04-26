@@ -6,6 +6,7 @@ namespace App\Controller\Recipe;
 
 use App\Controller\AddFlashTrait;
 use App\Controller\BaseController;
+use App\Controller\RequestTrait;
 use App\Dto\FavouriteDTO;
 use App\Entity\Recipe;
 use App\Messenger\CommandBus\Command\ToggleFavourites as CommandToggleFavourites;
@@ -24,8 +25,8 @@ use Twig\Environment;
 #[Route('recipe/{id}/toggle-favourites', name: 'recipe_toggle_favourites')]
 class ToggleFavourites extends BaseController
 {
-
     use AddFlashTrait;
+    use RequestTrait;
 
     public function __construct(
         protected Environment $twig,
@@ -40,6 +41,7 @@ class ToggleFavourites extends BaseController
     public function __invoke(Recipe $recipe): Response
     {
         $username = $this->security->getUser()->getUsername();
+        $path = $this->getRequest()->get('path');
         $this->commandBus->dispatch(
             new CommandToggleFavourites(
                 new FavouriteDTO(
@@ -55,6 +57,6 @@ class ToggleFavourites extends BaseController
             $this->addFlash('success', "Recipe {$recipe->getTitle()} added to favourites");
         }
 
-        return new RedirectResponse($this->router->generate('recipe_list'));
+        return new RedirectResponse($this->router->generate($path, ['id' => $recipe->getId()]));
     }
 }

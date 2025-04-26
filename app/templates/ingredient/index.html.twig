@@ -8,7 +8,8 @@
         'header': 'Ingredients',
         'pathName': 'ingredient_list',
         'field': 'i.name',
-        'fieldName': 'Name'
+        'fieldName': 'Name',
+        'icon': 'fa-solid fa-carrot'
     } %}
 
     <div class="row">
@@ -25,7 +26,9 @@
                         <div class="d-flex">
                             <span class="mx-4">{{ ingrendient.name}}</span>
                         </div>
-                        <a href="{{ path('ingredient_show', { id: ingrendient.id }) }}">🔍Details</a>
+                        <a class="btn btn-dark btn-sm" href="{{ path('ingredient_show', { id: ingrendient.id }) }}">
+                            Details <i class="fa-solid fa-eye mx-1"></i>
+                        </a>
                     </li> 
                 {% endfor %}
             </ul>

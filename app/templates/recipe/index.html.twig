@@ -44,15 +44,18 @@
                         class="btn btn-dark w-100">
                              Details <i class="fa-solid fa-eye mx-1"></i>
                         </a>
-                        <a class="btn btn-dark w-100 my-2" href="{{ path('recipe_toggle_favourites', { id: recipe.id }) }}" >
-                             {% if recipe.isFavouredByUser(app.user.username) %}
-                                 Add to favourite
-                                <i class="fa-solid fa-heart"></i>
-                             {% else %}
-                                Remove from favourite
-                                 <i class="fa-regular fa-heart"></i>
-                             {% endif %}
-                        </a>
+                        {% block path %}
+                            <a class="btn btn-dark w-100 my-2" href="{{
+                            path('recipe_toggle_favourites', {id: recipe.id, path: 'recipe_list'}) }}" >
+                                 {% if recipe.isFavouredByUser(app.user.username) %}
+                                    Remove from favourite
+                                    <i class="fa-solid fa-heart"></i>
+                                 {% else %}
+                                     Add to favourite
+                                     <i class="fa-regular fa-heart"></i>
+                                 {% endif %}
+                            </a>
+                        {% endblock %}
                     </div>
                   </div>
             </div>

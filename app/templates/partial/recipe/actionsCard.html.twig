@@ -1,7 +1,23 @@
 <div class="card mb-4 shadow">
     <div class="card-body text-center">
-        <a style="width: 30%" href="{{ path('recipe_list') }}" class="btn btn-dark"> ⏪ Recipes list</a>
-        <button data-id="{{recipe.id}}" style="width: 30%" class="btn btn-dark my-3 favouriteBtn">♥️</button>
-        <a style="width: 30%;" href="{{ path('recipe_comment', { recipeId: recipe.id }) }}" class="btn btn-dark">➕ Add comment</a>
+        <a style="width: 30%" href="{{ path('recipe_list') }}" class="btn btn-dark"> 
+            Recipes list
+            <i class="fa-solid fa-hand-point-left"></i>
+        </a>
+        <a style="width: 30%" class="btn btn-dark" 
+            href="{{ path('recipe_toggle_favourites', { id: recipe.id , path:
+            'recipe_show'}) }}" >
+             {% if recipe.isFavouredByUser(app.user.username) %}
+                 Add to favourite
+                <i class="fa-solid fa-heart"></i>
+             {% else %}
+                Remove from favourite
+                 <i class="fa-regular fa-heart"></i>
+             {% endif %}
+        </a>
+        <a style="width: 30%;" href="{{ path('recipe_comment', { recipeId: recipe.id }) }}" class="btn btn-dark">
+            Add comment
+            <i class="fa-solid fa-plus"></i>
+        </a>
     </div>
 </div>

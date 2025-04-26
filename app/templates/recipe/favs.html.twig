@@ -1,9 +1,21 @@
 {% extends 'recipe/index.html.twig' %}
+
 {% block title %}{{ '- Favourites'}}{% endblock %}
 {% block header %} 
     <div>
         <h1 class="mt-4 mb-4">Favourite recipes:</h1>
     </div>
+{% endblock %}
+{% block path %}
+<a class="btn btn-dark w-100 my-2" href="{{ path('recipe_toggle_favourites', {id: recipe.id, path: 'recipe_favs'}) }}" >
+     {% if recipe.isFavouredByUser(app.user.username) %}
+        Remove from favourite
+        <i class="fa-solid fa-heart"></i>
+     {% else %}
+         Add to favourite
+         <i class="fa-regular fa-heart"></i>
+     {% endif %}
+</a>
 {% endblock %}
 
 

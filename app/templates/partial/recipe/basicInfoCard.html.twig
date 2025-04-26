@@ -1,25 +1,33 @@
 <div class="card mb-4 text-center shadow">
     <div class="card-header bg-dark text-white">
-        <h2 class="mb-0">🍲 {{ recipe.title }} 🍲</h2>
+        <h2 class="mb-0">
+            <i class="fa-solid fa-utensils mx-1"></i>
+            {{ recipe.title }}
+            <i class="fa-solid fa-utensils mx-1"></i>
+        </h2>
     </div>
     <img src="{{ asset(recipe.mealThumb) }}" alt="{{ recipe.title }}"
     class="img w-50 mx-auto rounded my-3 shadow">
     <div class="card-body">
         <p>
-            <strong>Category:</strong> <a href="{{ path('category_show', {
+            <span class="badge bg-dark text-light">Category:</span> <a href="{{ path('category_show', {
             id: recipe.category.id }) }}">{{ recipe.category.name ?? 'N/A' }}</a>
             <br>
-            <strong>Area:</strong> {{ recipe.area ?? 'N/A' }}<br>
+            <span class="badge bg-dark text-light">Area:</span> {{ recipe.area ?? 'N/A' }}<br>
             <a href="{{ path('recipe_all_comments', { id: recipe.id }) }}">{{ recipe.comments|length }} Comments</a>
             <br>
             <small class="fw-lighter my-2">
                 {% if recipe.tags %}
-                    Tags: {{ recipe.tags }}
+                    <span class="badge bg-light text-dark">Tags: {{ recipe.tags }}</span>
                 {% endif %}
             </small>
             <hr>
-            <a class="fw-light mx-4" href="{{ recipe.source }}">Source</a>
-            <a class="fw-light mx-4" href="{{ recipe.youtube }}">YouTube</a>
+            <a class="fw-light mx-4 btn btn-dark btn-sm" href="{{ recipe.source }}">
+                Source <i class="fa-solid fa-magnifying-glass mx-1"></i>
+            </a>
+            <a class="fw-light mx-4 btn btn-dark btn-sm" href="{{ recipe.youtube }}">
+                YouTube <i class="fa-solid fa-circle-play mx-1"></i>
+            </a>
         </p>
     </div>
 </div>

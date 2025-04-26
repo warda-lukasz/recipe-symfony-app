@@ -1,6 +1,8 @@
 <div style="margin-right: 1em;" class="card shadow rounded-top">
     <div class="card-header bg-dark text-white rounded-top">
-        <h2 class="mb-0">📋 Ingredients</h2>
+        <h2 class="mb-0">
+            Ingredients <i class="fa-solid fa-carrot"></i>
+        </h2>
     </div>
     <div class="card-body">
         <ul class="list-group">
@@ -8,8 +10,11 @@
                 {% for measurement in recipe.measurements %}
                     <li class="list-group-item">
                         <strong>
-                            <a href="{{ path('ingredient_show', { id: measurement.ingredient.id }) }}">
-                                🌯 {{ measurement.ingredient.name }}:
+                        <span class="badge bg-dark text-light">
+                        Ingredient:
+                        </span>
+                            <a class="text-dark" href="{{ path('ingredient_show', { id: measurement.ingredient.id }) }}">
+                                {{ measurement.ingredient.name }}:
                             </a>
                         </strong>
                         {{ measurement.measure }}

@@ -13,7 +13,8 @@
             'header': 'Categories',
             'pathName': 'category_list',
             'field': 'c.name',
-            'fieldName': 'Name'
+            'fieldName': 'Name',
+            'icon': 'fa-solid fa-pepper-hot'
         } %}
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
             {% for category in pagination %}
@@ -24,7 +25,10 @@
                   category.name }}">
                   <div class="card-body pb-0">
                     <div class="my-2 text-center"> 
-                        <a href="{{ path('category_show', { id: category.id }) }}" class="btn btn-dark w-100">🔍 Details</a>
+                        <a href="{{ path('category_show', { id: category.id })
+                        }}" class="btn btn-dark w-100">
+                            Details <i class="fa-solid fa-eye mx-1"></i>
+                        </a>
                     </div>
                   </div>
                 </div>

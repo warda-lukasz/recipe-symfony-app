@@ -8,12 +8,21 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header bg-dark text-white d-flex justify-content-between align-items-baseline">
-                    <h2>💬 All Comments ({{ recipe.comments|length }})</h2>
+                    <h2>
+                        <i class="fa-solid fa-comments"></i>
+                        All Comments ({{ recipe.comments|length }})
+                    </h2>
                     <div>
                     <a href="{{ path('recipe_show', { id: recipe.id }) }}"
-                    class="btn btn-light">⏪ Back to recipe</a>
+                    class="btn btn-light">
+                        <i class="fa-solid fa-eye"></i>
+                        Back to recipe
+                    </a>
                     <a href="{{ path('recipe_comment', { recipeId: recipe.id }) }}"
-                    class="btn btn-secondary">➕ Add comment</a>
+                    class="btn btn-secondary">
+                        <i class="fa-solid fa-plus"></i>
+                        Add comment
+                    </a>
                     </div>
                 </div>
 
@@ -22,12 +31,17 @@
                         <div class="alert alert-dark" role="alert">
                             <div class="d-flex justify-content-between">
                                 <h5 class="alert-heading">
-                                    👤 {{comment.author}}
+                                    <i class="fa-solid fa-user"></i>
+                                    {{ comment.author }}
                                 </h5>
-                                <small class="fw-light">📅 {{comment.createdAt|date("Y-m-d H:i:s")}}</small>
+                                <small class="fw-light">
+                                    <i class="fa-solid fa-clock"></i>
+                                    {{comment.createdAt|date("Y-m-d H:i:s")}}
+                                </small>
                             </div>
                             <p>
-                                ✍️ {{ comment.content }}
+                                <i class="fa-solid fa-message"></i>
+                                {{ comment.content }}
                             </p>
                         </div>
                     {% endfor %}

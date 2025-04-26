@@ -13,7 +13,6 @@ use App\Messenger\QueryBus\QueryBusInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
-use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 use Twig\Environment;
 
@@ -31,12 +30,11 @@ class FavouritesList extends BaseController
     ) {
         parent::__construct($twig);
     }
-    public function __invoke(#[MapQueryString] FavouritesDTO $dto): Response
+    public function __invoke(): Response
     {
         return $this->respond('recipe/favs.html.twig', [
             'pagination' => $this->queryBus->query(
                 new FavouritesQuery(
-                    dto: $dto,
                     request: $this->getRequest(),
                     entityClass: Recipe::class,
                     alias: 'r',
