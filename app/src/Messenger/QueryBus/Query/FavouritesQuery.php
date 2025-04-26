@@ -7,7 +7,7 @@ namespace App\Messenger\QueryBus\Query;
 use App\Dto\FavouritesDTO;
 use Symfony\Component\HttpFoundation\Request;
 
-class FavouritesQuery extends AbstractListQuery
+final class FavouritesQuery extends AbstractListQuery
 {
     public function __construct(
         private FavouritesDTO $dto,

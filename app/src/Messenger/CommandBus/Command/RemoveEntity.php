@@ -6,11 +6,11 @@ namespace App\Messenger\CommandBus\Command;
 
 use App\Dto\DtoInterface;
 
-final readonly class CreateEntity implements CommandInterface
+final readonly class RemoveEntity implements CommandInterface
 {
     public function __construct(
         private DtoInterface $dto,
-        private string $entityClass,
+        private string $entityClass
     ) {}
 
     public function getDto(): DtoInterface
@@ -21,10 +21,5 @@ final readonly class CreateEntity implements CommandInterface
     public function getEntityClass(): string
     {
         return $this->entityClass;
-    }
-
-    public function getDtoClass(): string
-    {
-        return get_class($this->dto);
     }
 }

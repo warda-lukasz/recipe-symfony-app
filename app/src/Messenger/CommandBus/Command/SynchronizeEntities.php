@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Messenger\CommandBus\Command;
 
-class SynchronizeEntities implements CommandInterface
+final readonly class SynchronizeEntities implements CommandInterface
 {
     /**
      * @param DtoInterface[] $dtos
      */
     public function __construct(
-        private readonly array $dtos,
-        private readonly string $entityClass,
+        private array $dtos,
+        private string $entityClass,
     ) {}
 
     public function getDtos(): array

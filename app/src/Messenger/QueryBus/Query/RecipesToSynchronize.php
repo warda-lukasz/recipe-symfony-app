@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messenger\QueryBus\Query;
 
-class RecipesToSynchronize extends AbstractQuery
+final class RecipesToSynchronize extends AbstractQuery
 {
     public function __construct(
         protected ?string $entityClass = null,

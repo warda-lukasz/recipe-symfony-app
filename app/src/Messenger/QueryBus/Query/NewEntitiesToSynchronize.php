@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messenger\QueryBus\Query;
 
-class NewEntitiesToSynchronize extends AbstractQuery
+final class NewEntitiesToSynchronize extends AbstractQuery
 {
     public function __construct(
         protected ?string $entityClass = null,

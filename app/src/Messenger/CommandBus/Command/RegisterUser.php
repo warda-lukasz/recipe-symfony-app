@@ -6,7 +6,7 @@ namespace App\Messenger\CommandBus\Command;
 
 use App\Dto\RegistrationDTO;
 
-class RegisterUser implements CommandInterface
+final readonly class RegisterUser implements CommandInterface
 {
     public function __construct(
         private RegistrationDTO $dto

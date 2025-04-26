@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Twig\Environment;
 
 #[AsController]
+#[Route('/recipe/favourites', name: 'recipe_favs')]
 class FavouritesList extends BaseController
 {
     use RequestTrait;
@@ -30,7 +31,6 @@ class FavouritesList extends BaseController
     ) {
         parent::__construct($twig);
     }
-    #[Route('/recipe/favourites', name: 'recipe_favs')]
     public function __invoke(#[MapQueryString] FavouritesDTO $dto): Response
     {
         return $this->respond('recipe/favs.html.twig', [

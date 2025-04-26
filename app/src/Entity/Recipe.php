@@ -79,6 +79,14 @@ class Recipe implements EntityInterface
     ]
     private Collection $measurements;
 
+    #[ORM\OneToMany(
+        targetEntity: Favourite::class,
+        mappedBy: 'recipe',
+        cascade: ['persist', 'remove'],
+        fetch: 'EXTRA_LAZY',
+    )]
+    private Collection $favourites;
+
     public function __construct(DtoInterface $dto)
     {
         if (!$dto instanceof RecipeDTO) {
@@ -97,6 +105,7 @@ class Recipe implements EntityInterface
 
         $this->measurements = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->favourites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -266,5 +275,39 @@ class Recipe implements EntityInterface
         }
 
         return $this;
+    }
+
+    public function getFavourites(): Collection
+    {
+        return $this->favourites;
+    }
+
+    public function addFavourite(Favourite $fav): self
+    {
+        if (!$this->favourites->contains($fav)) {
+            $this->favourites->add($fav);
+        }
+
+        return $this;
+    }
+
+    public function removeFavourite(Favourite $fav): self
+    {
+        if ($this->favourites->contains($fav)) {
+            $this->favourites->removeElement($fav);
+        }
+
+        return $this;
+    }
+
+    public function isFavouredByUser(string $username): bool
+    {
+        foreach ($this->favourites as $favourite) {
+            if ($favourite->getUsername() === $username) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
