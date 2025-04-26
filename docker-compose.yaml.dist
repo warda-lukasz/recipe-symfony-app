@@ -7,6 +7,7 @@ services:
             - ./app/:/var/www/app/
         ports:
             - "80:80"
+            - "443:443"
         networks:
             - recipe
         depends_on:

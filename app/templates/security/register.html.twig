@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block menu %} {% endblock %}
+
+{% block content %}
+    <div class="container min-vh-100 d-flex justify-content-center align-items-center">
+        <div class="row w-100">
+            <div class="col-md-6 mx-auto">
+            <div class="card shadow">
+                <img src="{{ asset("images/logo.png") }}" class="card-img-top" alt="recipe logo">
+                <div class="card-body">
+                {{ form_errors(registrationForm) }}
+
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.username) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    <button type="submit" class="btn btn-primary my-3">Register</button>
+                {{ form_end(registrationForm) }}
+                <p>Already have an account? <a href="{{path('app_login')}}">Login here</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
