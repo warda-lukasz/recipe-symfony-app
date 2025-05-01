@@ -15,4 +15,5 @@ app/assets/vendor/*
 !app/assets/vendor/fontawesome/
 app/public/assets/
 sonar.sh
+.scannerwork
 ###< symfony/framework-bundle ###
