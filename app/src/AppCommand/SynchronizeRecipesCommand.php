@@ -20,7 +20,7 @@ use Throwable;
 class SynchronizeRecipesCommand extends Command
 {
     /**
-     * @param SynchronizerInterface[] $synchronizers 
+     * @param SynchronizerInterface[] $synchronizers
      */
     public function __construct(
         private readonly MealDbSynchronizer $recipeSynchronizer,

@@ -38,8 +38,6 @@ class MealDbClient implements MealDbClientInterface
             throw new MealDbApiErrorException('Error fetching data from MealDB API');
         }
 
-        $data = $response->toArray();
-
-        return $data;
+        return $response->toArray();
     }
 }

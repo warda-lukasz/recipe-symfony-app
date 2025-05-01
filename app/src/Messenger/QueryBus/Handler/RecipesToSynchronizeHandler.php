@@ -52,7 +52,7 @@ class RecipesToSynchronizeHandler implements QueryHandlerInterface
 
     /**
      * HACK: Unfortunately, we cannot pull from the API at full speed,
-     * because we hit the rate limit. Therefore, every 20 elements 
+     * because we hit the rate limit. Therefore, every 20 elements
      * we'll give the server a little break.
      * 1 second should be enough, with shorter times I got HTTP 429
      */

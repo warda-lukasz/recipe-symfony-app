@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Messenger\QueryBus\Query;
 
-final class EntitiesFieldAsArrayQuery extends AbstractQuery 
+final class EntitiesFieldAsArrayQuery extends AbstractQuery
 {
     public function __construct(
         protected ?string $entityClass,

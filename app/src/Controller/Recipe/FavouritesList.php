@@ -23,7 +23,6 @@ class FavouritesList extends BaseController
     use RequestTrait;
 
     public function __construct(
-        private readonly FavouritesDTO $favouritesDTO,
         private readonly QueryBusInterface $queryBus,
         private readonly RequestStack $requestStack,
         protected Environment $twig

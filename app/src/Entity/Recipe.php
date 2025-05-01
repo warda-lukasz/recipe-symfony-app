@@ -268,10 +268,11 @@ class Recipe implements EntityInterface
 
     public function removeComment(Comment $comment): self
     {
-        if ($this->comments->removeElement($comment)) {
-            if ($comment->getRecipe() === $this) {
-                $comment->setRecipe(null);
-            }
+        if (
+            $this->comments->removeElement($comment) &&
+            $comment->getRecipe() === $this
+        ) {
+            $comment->setRecipe(null);
         }
 
         return $this;
